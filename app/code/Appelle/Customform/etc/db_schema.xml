@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="appelle_callback" resource="default" engine="innodb" comment="Appelle Callback Table">
+		<column xsi:type="smallint" name="id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id"/>
+		</constraint>
+		<column name="full_name" nullable="true" xsi:type="text" comment="Full Name"/>
+		<column name="email" nullable="true" xsi:type="text" comment="Email"/>
+		<column name="phone" nullable="true" xsi:type="text" comment="Phone"/>
+		<column name="style" nullable="true" xsi:type="text" comment="Style"/>
+		<column name="color" nullable="true" xsi:type="text" comment="Color"/>
+		<column name="message" nullable="true" xsi:type="text" comment="Message"/>
+		<column name="prefered" nullable="true" xsi:type="text" comment="prefered"/>
+		<column name="created_at" nullable="true" xsi:type="datetime" comment="Created Date" default="CURRENT_TIMESTAMP"/>
+		<index referenceId="MAGELEARN_CUSTOMFORM_FULL_NAME" indexType="fulltext">
+	        <column name="full_name"/>
+	    </index>
+		<index referenceId="MAGELEARN_CUSTOMFORM_EMAIL" indexType="fulltext">
+	        <column name="email"/>
+	    </index>
+		<index referenceId="MAGELEARN_CUSTOMFORM_PHONE" indexType="fulltext">
+	        <column name="phone"/>
+	    </index>
+	    <index referenceId="MAGELEARN_CUSTOMFORM_STYLE" indexType="fulltext">
+	        <column name="style"/>
+	    </index>
+		<index referenceId="MAGELEARN_CUSTOMFORM_COLOR" indexType="fulltext">
+	        <column name="color"/>
+	    </index>
+		<index referenceId="MAGELEARN_CUSTOMFORM_MESSAGE" indexType="fulltext">
+	        <column name="message"/>
+	    </index>
+	</table>
+</schema>

@@ -1,0 +1,350 @@
+.transform (@translate) {
+    transform: @translate;
+    -webkit-transform: @translate;
+    -moz-transform: @translate;
+    -o-transform: @translate;
+}
+
+.border-radius (@radius) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -o-border-radius: @radius;
+}
+
+.transition (@transition) {
+    transition: @transition;
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+}
+
+.transform-origin(@transform-origin) {
+    transform-origin: @transform-origin;
+    -webkit-transform-origin: @transform-origin;
+    -ms-transform-origin: @transform-origin;
+    -moz-transform-origin: @transform-origin;
+    -o-transform-origin: @transform-origin;
+}
+
+.box-shadow(@horiz, @vert, @blur, @spread, @color) {
+    -webkit-box-shadow: @horiz @vert @blur @spread @color;
+    -moz-box-shadow: @horiz @vert @blur @spread @color;
+    box-shadow: @horiz @vert @blur @spread @color;
+}
+
+.position(@position, @top , @right , @bottom , @left) {
+    position: @position;
+    top: @top;
+    right: @right;
+    bottom: @bottom;
+    left: @left;
+}
+
+/* CSS call for price in category page */
+.product-item-details {
+    .detail-price {
+        .actions-primary {
+
+            .call-for-price,
+            .quote {
+                width: 28px;
+                height: 28px;
+                border-radius: 6px;
+                line-height: 26px;
+                border-color: rgba(245, 88, 62, 0.2);
+                color: #f5583e;
+                font-size: 14px;
+                padding: 0;
+                position: relative;
+                background: #fff;
+
+                &:hover {
+                    background: none;
+
+                    span {
+                        visibility: visible;
+                        opacity: 1;
+                        .transform(translate(-10px, -50%));
+                        max-width: 130px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        .transition(.3s ease-in);
+                    }
+                }
+
+                &:before {
+                    content: "\f095";
+                    font-family: 'fontAwesome2';
+                }
+
+                span {
+                    background: #f5583e;
+                    font-size: 14px;
+                    color: #fff;
+                    display: block;
+                    border-radius: 6px;
+                    padding: 0 6px;
+                    line-height: 28px;
+                    min-height: 28px;
+                    white-space: nowrap;
+                    .position(absolute, 50%, 100%, unset, unset);
+                    .transform(translate(0, -50%));
+                    opacity: 0;
+                    visibility: hidden;
+                    z-index: 10;
+                    max-width: 130px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    .transition(.3s ease-in);
+
+                    &:before {
+                        content: '';
+                        display: block;
+                        border: 4px solid transparent;
+                        border-left-color: #f5583e;
+                        .position(absolute, 50%, unset, unset, 100%);
+                        .transform(translate(0, -50%));
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* End CSS call for price in category page */
+/* CSS Request Quote button */
+.quote {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    line-height: 26px;
+    border-color: rgba(245, 88, 62, 0.2);
+    color: #f5583e;
+    font-size: 14px;
+    padding: 0;
+    position: relative;
+    background: #fff;
+
+    &:hover {
+        background: none;
+
+        span {
+            visibility: visible;
+            opacity: 1;
+            .transform(translate(-10px, -50%));
+            max-width: 130px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            .transition(.3s ease-in);
+        }
+    }
+
+    &:before {
+        content: "\f095";
+        font-family: 'fontAwesome2';
+    }
+
+    span {
+        background: #f5583e;
+        font-size: 14px;
+        color: #fff;
+        display: block;
+        border-radius: 6px;
+        padding: 0 6px;
+        line-height: 28px;
+        min-height: 28px;
+        white-space: nowrap;
+        .position(absolute, 50%, 100%, unset, unset);
+        .transform(translate(0, -50%));
+        opacity: 0;
+        visibility: hidden;
+        z-index: 10;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .transition(.3s ease-in);
+
+        &:before {
+            content: '';
+            display: block;
+            border: 4px solid transparent;
+            border-left-color: #f5583e;
+            .position(absolute, 50%, unset, unset, 100%);
+            .transform(translate(0, -50%));
+        }
+    }
+}
+
+/* End CSS Request Quote button */
+/* CSS call for price in product detail page */
+.product-info-main {
+    .product-add-form {
+        .fieldset {
+            .call-for-price {
+                border: 1px solid #f5583e;
+                background: #f5583e;
+                text-align: left;
+                padding: 13px 19px;
+                font-size: 14px;
+                line-height: 10px;
+                color: #fff;
+                height: 42px;
+                cursor: pointer;
+                .border-radius(25px);
+                .transition(.3s ease-in);
+
+                &:hover {
+                    background: #222;
+                    border-color: #222;
+                    .transition(.3s ease-in);
+                }
+            }
+        }
+    }
+}
+
+/* End CSS call for price in product detail page */
+/* CSS form pop up */
+.see-detail-modal {
+    .modal-inner-wrap {
+        width: 50% !important;
+        overflow: hidden;
+
+        .modal-header {
+            border: none;
+
+            .action-close {
+                font-family: 'icons-blank-theme';
+                right: -5px;
+                top: -5px;
+
+                &:before {
+                    line-height: 30px;
+                    content: '\e616';
+                    font-size: 35px;
+                    .border-radius(unset);
+                    width: unset;
+                    height: unset;
+                    color: #222;
+                    background-color: #fff;
+                    border: none;
+                }
+            }
+        }
+
+        .modal-content {
+            width: 100%;
+            margin: 0 auto;
+
+            .form.quote-request {
+                max-height: 90vh;
+                overflow: hidden;
+                overflow-y: auto;
+                padding-bottom: 30px;
+
+                .fieldset {
+                    padding: 0 30px;
+                    overflow: hidden;
+
+                    .legend {
+                        font-size: 30px;
+                        font-weight: 400;
+                        color: var(--thim-mgs-color-02, black);
+                        padding-top: 15px;
+                        width: 100%;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #eaeaea;
+                        margin-bottom: 10px;
+
+                        .span {
+                            text-align: center;
+                            display: block;
+                        }
+                    }
+
+                    .field.note.no-label {
+                        padding-bottom: 10px;
+                        font-style: italic;
+                    }
+
+                    .field label.productId,
+                    .field label.productSku,
+                    .field label.productName {
+                        display: none;
+                    }
+
+                    .field.name.required {
+                        width: 50%;
+                        float: left;
+                        padding-right: 10px;
+                        margin-bottom: 20px;
+                    }
+
+                    .field.telephone {
+                        width: 50%;
+                        float: left;
+                        padding-left: 10px;
+                        margin-bottom: 20px !important;
+                    }
+
+                    .field.comment textarea {
+                        resize: vertical;
+                    }
+                }
+
+                .actions-toolbar>.primary {
+                    margin: 10px 0 0 30px;
+
+                    .primary {
+                        padding: 10px 52px !important;
+                        border: 0;
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            display: none;
+        }
+    }
+}
+
+
+/* End CSS form pop up */
+/* CSS Request Quote button in product detail*/
+button.tocart.request-quote {
+    border: 1px solid #f5583e;
+    background: #f5583e;
+    text-align: left;
+    padding: 13px 19px;
+    font-size: 14px;
+    line-height: 10px;
+    color: #fff;
+    height: 42px;
+    cursor: pointer;
+    .border-radius(25px);
+    .transition(.3s ease-in);
+
+    &:hover {
+        background: #222;
+        border-color: #222;
+        .transition(.3s ease-in);
+    }
+}
+
+/* End CSS Request Quote button in product detail */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #dedede;
+    border-radius: 10px;
+}

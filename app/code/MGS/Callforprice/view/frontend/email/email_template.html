@@ -1,0 +1,44 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Contact Form"}} @-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name",
+"var data.telephone":"Sender Telephone"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "Name"}}</strong></td>
+        <td>{{var data.name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Phone"}}</strong></td>
+        <td>{{var data.telephone}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Product ID"}}</strong></td>
+        <td>{{var data.productId}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Product SKU"}}</strong></td>
+        <td>{{var data.productSku}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Product Name"}}</strong></td>
+        <td>{{var data.productName}}</td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

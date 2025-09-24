@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+         <add id="Orra_Career::career" title="Collections" module="Orra_Career"
+             resource="Orra_Career::career" sortOrder="30"/>
+        <add id="Orra_Career::collection" title="Career Collections" module="Orra_Career"
+             sortOrder="40" resource="Orra_Career::collection" parent="Orra_Career::career"
+             action="career/career"/>
+        <add id="Orra_Career::applications" title="Career Applications" module="Orra_Career"
+             sortOrder="60" resource="Orra_Career::collection" parent="Orra_Career::collection"
+             action="career/applications"/>     
+    </menu>
+
+</config>

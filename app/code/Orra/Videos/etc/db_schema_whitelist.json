@@ -1,0 +1,15 @@
+{
+    "video_records": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "description": true,
+            "video_url": true,
+            "sort_position": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

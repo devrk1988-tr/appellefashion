@@ -1,0 +1,18 @@
+<?php
+
+?>
+<?php
+/**
+ * @var \MGS\BuyNow\Block\Product\ListProduct $block
+ * @var \MGS\BuyNow\ViewModel\BuyNow $viewModel
+ */
+$viewModel = $block->getViewModel();
+$buttonTitle = $viewModel->getButtonTitle();
+?>
+<div class="mageprince-buy-now-list" data-mage-init='{"MGS_BuyNow/js/buy-now-list": {}}'>
+    <button type="submit"
+            title="<?= $block->escapeHtml(__($buttonTitle)) ?>"
+            class="action primary mageprince-buynow-btn-list">
+        <span><?= $block->escapeHtml(__($buttonTitle)) ?></span>
+    </button>
+</div>

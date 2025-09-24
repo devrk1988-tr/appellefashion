@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="mgscallforprice" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+            <class>separator-top</class>
+            <label>Call for price</label>
+            <tab>mgs</tab>
+            <resource>MGS_Callforprice::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Call for price </label>
+                <field id="isenabled" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="choosetype" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose</label>
+                    <comment>Choose which type to be show</comment>
+                    <depends><field id="isenabled" separator=",">1</field></depends>
+                    <source_model>MGS\Callforprice\Model\System\Config\Type</source_model>
+                </field>
+                <field id="callforpricetextbutton" translate="label comment" type="text" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Call for price text button</label>
+                    <comment>Change text of call to price button</comment>
+                    <depends>
+                        <field id="choosetype" separator=",">1</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                </field>
+                <field id="vendorphonenumber" translate="label comment" type="text" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vendor phone number</label>
+                    <depends>
+                        <field id="choosetype" separator=",">1</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                </field>
+                <field id="requestquote" translate="label comment" type="text" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Request Quote text button</label>
+                    <comment>Change text of request quote button</comment>
+                    <depends>
+                        <field id="choosetype" separator=",">2</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                </field>
+                <field id="recipient_email" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Emails To</label>
+                    <validate>validate-email</validate>
+                    <depends>
+                        <field id="choosetype" separator=",">2</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                </field>
+                <field id="sender_email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="choosetype" separator=",">2</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                </field>
+                <field id="templateemail" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Template email</label>
+                    <comment>Change template email</comment>
+                    <depends>
+                        <field id="choosetype" separator=",">2</field>
+                        <field id="isenabled" separator=",">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?php 
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+if ($_attributeLabel && $_attributeLabel == 'default') {
+	$_attributeLabel = $_product->getResource()->getAttribute($_code)->getFrontendLabel();
+}
+$_attributeValue =$_product->getResource()->getAttribute($_code)->getFrontend()->getValue($_product);
+?>
+<?php if ($_attributeValue): ?>
+	<?php if ($_attributeLabel != 'none'): ?>
+		<div class="product dispatch-date">
+			<strong><?php echo $_attributeLabel.": ";?></strong>
+			<span class="value" itemprop="sku">
+				<?php echo date('d M Y', strtotime("+" . $_attributeValue . " day")); ?>
+			</span>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>

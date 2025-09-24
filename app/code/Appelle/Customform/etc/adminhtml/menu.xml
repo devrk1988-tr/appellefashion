@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Appelle::top_level" title="Appelle" module="Appelle_Customform" sortOrder="50" resource="Magento_Backend::content"/>
+		<add id="Appelle_Customform::manage_mlcustomform" title="Manage Callback Request" module="Appelle_Customform" sortOrder="10" resource="Appelle_Customform::manage_mlcustomform" parent="Appelle::top_level" action="mlladmincustomform/customform"/>
+	</menu>
+</config>

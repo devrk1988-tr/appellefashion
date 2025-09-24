@@ -1,0 +1,43 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Orra\Career\Model\ResourceModel\Career\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">orra_career</argument>
+            <argument name="resourceModel" xsi:type="string">Orra\Career\Model\ResourceModel\Career</argument>
+        </arguments>
+
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="career_career_listing_data_source" xsi:type="string">Orra\Career\Model\ResourceModel\Career\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Orra\Career\Ui\DataProvider\CareerDataProvider"
+                 type="Orra\Career\Ui\DataProvider\GenericFormDataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                Orra\Career\Model\ResourceModel\Career\Collection
+            </argument>
+            <argument name="fieldset" xsi:type="string">general</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Orra\Career\Model\ResourceModel\Orra\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">orra_job_applications</argument>
+            <argument name="resourceModel" xsi:type="string">Orra\Career\Model\ResourceModel\Orra</argument>
+        </arguments>
+
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="career_applications_listing_data_source" xsi:type="string">Orra\Career\Model\ResourceModel\Orra\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="MGS_BuyNow::bynow_configuration" title="By Now" module="MGS_ByNow" sortOrder="40"
+             parent="Magento_Backend::mgs" resource="MGS_BuyNow::bynow_configuration"/>
+        <add id="MGS_ByNow::configuration" title="Configuration" module="MGS_ByNow" sortOrder="20"
+             parent="MGS_BuyNow::bynow_configuration" action="adminhtml/system_config/edit/section/buynow"
+             resource="MGS_BuyNow::configuration"/>
+    </menu>
+</config>

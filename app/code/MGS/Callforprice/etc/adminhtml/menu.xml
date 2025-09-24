@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="MGS_Callforprice::callforprice" title="Call for price" module="MGS_Callforprice" sortOrder="80" parent="Magento_Backend::mgs" resource="MGS_Callforprice::callforprice"/>
+        <add id="MGS_Callforprice::configuration" title="Configuration" module="MGS_Callforprice" sortOrder="20" parent="MGS_Callforprice::callforprice" action="adminhtml/system_config/edit/section/mgscallforprice" resource="MGS_Callforprice::configuration"/>
+    </menu>
+</config>

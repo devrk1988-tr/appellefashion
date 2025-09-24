@@ -1,0 +1,100 @@
+<h1 class="book-designer-heading">Book a Designer Call</h1>
+<form class="form customform"
+      action="<?php echo $block->getBaseUrl().'callbackform/index/save'; ?>"
+      id="Appelle-customform-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      enctype="multipart/form-data"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+    <div class="field full_name required">
+            <label class="label" for="full_name"><span><?= $block->escapeHtml(__('Full Name:')) ?></span></label>
+            <div class="control">
+                <input name="full_name" 
+                       id="full_name" 
+                       title="<?= $block->escapeHtmlAttr(__('First Name')) ?>" 
+                       class="input-text" 
+                       type="text" 
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" 
+                       id="email" 
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       class="input-text" 
+                       type="email" 
+                       data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field phone required">
+            <label class="label" for="phone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="phone" 
+                id="phone" title="<?= $block->escapeHtmlAttr(__('Phone')) ?>" 
+                class="input-text" 
+                type="text">
+            </div>
+        </div> 
+        <div class="field style_preferences required">
+            <label class="label" for="style"><span><?= $block->escapeHtml(__('Style Preferences')) ?></span></label>
+            <div class="control">
+            <span>What type of design are you looking for?<br>(Check all that apply)</span>
+            <div>
+                <input type="checkbox" id="casual_wear" name="casual wear" checked />
+                <label for="casual wear">Casual Wear</label>
+            </div>
+            <div>
+                <input type="checkbox" id="party_wear" name="party wear" />
+                <label for="party wear">Party Wear</label>
+            </div>
+            <div>
+                <input type="checkbox" id="bridal_wear" name="bridal wear" checked />
+                <label for="bridal wear">Bridal Wear</label>
+            </div>
+            <div>
+                <input type="checkbox" id="custom_design" name="custom design" />
+                <label for="custom design">Custom Design</label>
+            </div>
+        </div>
+    </div>
+        <div class="field color_palette required">
+            <label class="label" for="color"><span><?= $block->escapeHtml(__('Perefered Color Palette')) ?></span></label>
+            <div class="control">
+                <input name="color" 
+                       id="color" 
+                       title="<?= $block->escapeHtmlAttr(__('Perefered Color Palette')) ?>" 
+                       class="input-text" 
+                       type="text" 
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field message required">
+            <label class="label" for="message"><span><?= $block->escapeHtml(__('Tell Us More About Your Vision Or Inspiration!')) ?></span></label>
+            <div class="control">
+                <textarea name="message" id="message" title="<?= $block->escapeHtml(__('Message')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <div class="control prefered">
+        <label class="label" for="prefered"><span><?= $block->escapeHtml(__('Prefered Appointment Time')) ?></span></label>
+        <div class="control">
+        <input
+                type="datetime-local"
+                id="prefered"
+                name="prefered"
+                value="20-06-12T19:30"
+                min="2024-06-07T00:00"
+                max="2035-06-14T00:00" />
+        </div> 
+    </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

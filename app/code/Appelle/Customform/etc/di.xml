@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Appelle\Customform\Api\CustomformRepositoryInterface" type="Appelle\Customform\Model\CustomformRepository"/>
+	<preference for="Appelle\Customform\Api\Data\CustomformInterface" type="Appelle\Customform\Model\Data\Customform"/>
+	<preference for="Appelle\Customform\Api\Data\CustomformSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Appelle\Customform\Model\ResourceModel\Customform\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">appelle_callback</argument>
+			<argument name="resourceModel" xsi:type="string">Appelle\Customform\Model\ResourceModel\Customform\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="default_sort_direction" type="Appelle\Customform\Plugin\ToolbarPlugin" />
+    </type>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="Appelle_customform_listing_data_source" xsi:type="string">Appelle\Customform\Model\ResourceModel\Customform\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Appelle\Customform\Controller\Adminhtml\Customform\FileUploader\Save">
+	    <arguments>
+	            <argument name="imageUploader" xsi:type="object">Appelle\Customform\CustomformImageUpload</argument>
+	    </arguments>
+	</type>
+</config>

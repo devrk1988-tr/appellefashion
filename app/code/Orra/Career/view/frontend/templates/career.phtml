@@ -1,0 +1,45 @@
+<?php
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('career_banner')
+->toHtml();
+$collection = $block->getCollection();
+if ($collection->count()) {
+    ?>
+<h1>Career Openings</h1>
+<div class="table-wrapper career-list">
+    <table class="data table table-order-items history" id="careers-list">
+        <caption class="table-caption"><?= ('Grid Record') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col title"></th>
+            <th scope="col" class="col content"></th>
+            <th scope="col" class="col description"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($collection as $item): ?>
+        <tr>
+            <td data-th="<?= $block->escapeHtml(__('Title')) ?>" class="col title">
+                <?=/* @noEscape */  $item->getTitle() ?>
+            </td>
+            <td data-th="<?= $block->escapeHtml(__('Content')) ?>" class="col content">
+                <?=/* @noEscape */  $item->getContent() ?>
+            </td>
+            <td data-th="<?= $block->escapeHtml(__('Description')) ?>" class="col description">
+                <?=/* @noEscape */  $item->getDescription() ?>
+            </td>
+            <td class="col description">
+            <button type="button" class="detail_btn btn" onclick="location.href='/career/orra/index/id/<?= $item->getId(); ?>'">
+                    <span>Explore This Role</span>
+                    </button>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+    <?php
+}
+?>

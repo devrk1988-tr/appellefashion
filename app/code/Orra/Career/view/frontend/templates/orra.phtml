@@ -1,0 +1,113 @@
+<div class="job_desc_wrapper container"> 
+<?php
+$collection = $block->getCareerdetails();
+if ($collection->count()) {
+    ?>
+     <?php
+        foreach ($collection as $item): ?>
+    <div class="career_info">
+        <div class="title"><?=/* @noEscape */  $item->getTitle() ?>
+        </div>
+        <div class="heading"><?=/* @noEscape */  $item->getDescription() ?>        
+        </div>
+        <div class="content longdesc"><?=/* @noEscape */  $item->getContent() ?>
+        </div>    
+    </div>
+            <?php endforeach; ?>    
+    <div class="career_form">
+        <form id="doc-form" name="doc-form" method="post" action="<?= /*@noEscape*/$block->getUrl('career/index/post');?>" 
+			enctype="multipart/form-data" data-hasrequired="* Required Fields" novalidate="novalidate">
+            <div class="labelspan">Apply for the Job!</div>
+
+            <fieldset class="fieldset">
+                <input type="hidden" value="<?=/* @noEscape */  $item->getId() ?>" name="career_id">
+                <div class="field fet name required">
+                    <label class="label" for="resume-name"><?= $block->escapeHtml(__('Name')) ?></label>
+                    <div class="control">
+                    <input type="text" class="validate-name t1 required-entry" oninput="this.value=this.value.replace(/[^a-z]/gi,'')" name="name" id="name" placeholder="NAME" aria-required="true">
+                    </div>
+                </div>
+                
+                <div class="field fet name required">
+                    <label class="label" for="resume-email"><?= $block->escapeHtml(__('Email')) ?></label>
+                    <div class="control">
+                    <input type="email" class="validate-email required-entry" name="email" id="email" placeholder="EMAIL" 
+					aria-required="true">
+                    </div> 
+                </div>
+
+                <div class="field fet name">
+                    <label class="label" for="phone_no"><?= $block->escapeHtml(__('Phone No.')) ?></label>
+                    <div class="control">
+                    <input type="text" class="t1" name="phone_no" id="phone_no" placeholder="PHONE NO." minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                    </div>
+                </div>
+
+                <div class="field fet name">
+                    <label class="label" for="resume-location"><?= $block->escapeHtml(__('Enter Location')) ?></label>
+                    <div class="control">
+                    <input type="text" class="t1" oninput="this.value=this.value.replace(/[^a-z]/gi,'')" name="location" id="location" placeholder="LOCATION">
+                    </div>
+                </div>
+
+                <input type="hidden" name="form_key" value="v1JSEi5JFm4jF7q2">
+                <!-- <div class="field name required files_attach">
+                        <label class="label" for="docname"><?= $block->escapeHtml(__('RESUME/CV')) ?></label>
+                        <div class="control files_wrapper">
+                            <label for="docname" class="custom-file-upload">
+                            </label>
+                            <input type="file" class="file required-entry validate-fileextensions validate-filesize" title="File" name="docname" id="docname" data-validate="{&quot;required&quot;:true,}" aria-required="true">
+                            <h5>Max 5MB File</h5>
+                        </div>
+                </div>  -->
+                <div class="field fet name">
+                    <label class="label" for="linkedin_profile"><?= $block->escapeHtml(__('Linkedin Profile')) ?></label>
+                    <div class="control">
+                        <input type="text" class="t1" name="linkedin_profile" id="linkedin_profile" placeholder="LINKEDIN PROFILE">
+                    </div>
+                </div>
+
+                <!-- <div class="field fet name">
+                    <label class="label" for="resume-website"><?= $block->escapeHtml(__('Website')) ?></label>
+                    <div class="control">
+                        <input type="text" class="t1" name="website" id="resume-website" placeholder="WEBSITE">
+                    </div>
+                </div> -->
+            </fieldset> 
+
+            <div class="actions-toolbar">
+                        <input type="hidden" name="hideit" id="hideit" value="">
+                        <button type="submit" title="Save" name="submit" class="btn upload-button" onclick="return countClicks();">Apply</button>
+                </div> 
+        </form>
+    </div>
+    </div>
+    </div>
+    <?php
+}
+?>
+<style>
+
+body .navigation {
+    z-index: 0;
+}
+
+</style>
+<script type="text/x-magento-init">
+    {
+        "#custom-form": {
+            "validation": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+   var dataForm = $('#doc-form');
+   dataForm.mage('validation', {});
+
+});
+</script>

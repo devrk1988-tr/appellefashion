@@ -1,0 +1,116 @@
+<form class="form customform"
+      action="<?php echo $block->getBaseUrl().'customform/index/save'; ?>"
+      id="magelearn-customform-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      enctype="multipart/form-data"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+    	<legend class="legend"><span><?= $block->escapeHtml(__('Personalised to order')) ?></span></legend><br>
+        <div class="field note no-label"><?= $block->escapeHtml(__('Get your tailored outfit now!')) ?></div>
+        <div class="field image">
+            <label class="label" for="image"><span><?= $block->escapeHtml(__('Image:')) ?></span></label>
+            <div class="control">
+                <input name="image" 
+                       id="image" 
+                       accept="image/*"
+                       accept=".jpg,.jpeg,.png,.gif"
+                       title="<?= $block->escapeHtmlAttr(__('Image')) ?>"
+                       class="input-text" 
+                       type="file" />
+            </div>
+        </div>
+        <div class="field message required">
+            <label class="label" for="message"><span><?= $block->escapeHtml(__('Your Customisation Message')) ?></span></label>
+            <div class="control">
+                <textarea name="message" id="message" title="<?= $block->escapeHtml(__('Message')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <div class="field size required">
+            <label class="label" for="phone"><span><?= $block->escapeHtml(__('BODY BUST/Cheast Mesurement')) ?></span></label>
+            <div class="control size">
+                <select name="size" id="sizeoption">
+                    <option value="30">30</option>
+                    <option value="32">32</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                    <option value="38">38</option>
+                    <option value="40">40</option>
+                    <option value="42">42</option>
+                    <option value="44">44</option>
+                    <option value="46">46</option>
+                    <option value="48">48</option>
+                    <option value="50">50</option>
+                    <option value="52">52</option>
+                    <option value="54">54</option>
+                    <option value="56">56</option>
+                    <option value="58">58</option>
+                    <option value="60">60</option>
+                    <option value="62">62</option>
+                    <option value="64">64</option>
+                    <option value="66">66</option>
+                    <option value="68">68</option>
+                    <option value="70">70</option>
+                    <option value="72">72</option>
+                </select>
+            </div>
+        </div>
+        <div class="control occasion">
+        <label class="label" for="phone"><span><?= $block->escapeHtml(__('Occasion Date')) ?></span></label>
+            <input type="date" 
+                class="input-text required-entry hasDatepicker" 
+                id="calendar_inputField" 
+                name="occasion"
+                aria-required="true" />
+        </div>
+        <div class="field first_name required">
+            <label class="label" for="first_name"><span><?= $block->escapeHtml(__('First name:')) ?></span></label>
+            <div class="control">
+                <input name="first_name" 
+                       id="first_name" 
+                       title="<?= $block->escapeHtmlAttr(__('First Name')) ?>" 
+                       class="input-text" 
+                       type="text" 
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field last_name required">
+            <label class="label" for="last_name"><span><?= $block->escapeHtml(__('Last name:')) ?></span></label>
+            <div class="control">
+                <input name="last_name" 
+                       id="last_name" 
+                       title="<?= $block->escapeHtmlAttr(__('Last Name')) ?>" 
+                       class="input-text" 
+                       type="text" 
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" 
+                       id="email" 
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       class="input-text" 
+                       type="email" 
+                       data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field phone required">
+            <label class="label" for="phone"><span><?= $block->escapeHtml(__('Phone:')) ?></span></label>
+            <div class="control">
+                <input name="phone" 
+                id="phone" title="<?= $block->escapeHtmlAttr(__('Phone')) ?>" 
+                class="input-text" 
+                type="text">
+            </div>
+        </div>   
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

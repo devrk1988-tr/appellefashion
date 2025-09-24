@@ -1,0 +1,164 @@
+<?php
+$callHelper = $this->helper('MGS\Callforprice\Helper\Data');
+$test = $this->getLayout()->createBlock('MGS\Callforprice\Block\RequestQuote')->getFormAction();
+$_product = $block->getProduct();
+$priceRender = $block->getLayout()->getBlock('product.price.render.default');
+if (!$priceRender) {
+    $priceRender = $block->getLayout()->createBlock(\Magento\Framework\Pricing\Render::class, 'product.price.render.default');
+}
+
+$priceHtml = $priceRender->render(
+    \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
+    $_product,
+    [
+        'display_minimal_price' => false,
+        'zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_VIEW,
+        'list_category_page' => true
+    ]
+);
+
+
+/** @var \Magento\Customer\Model\Session $customerSession */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get(\Magento\Customer\Model\Session::class);
+$UrlInterface = $objectManager->get(\Magento\Framework\UrlInterface::class);
+
+?>
+<div class="column main product_wp_<?= $_product->getId() ?> product-info-clearfix product-info-quickview product details product-item-details">
+	<div class="product-info-media-wrapper">
+		<?= $block->getChildHtml('product.quickview.info.media'); ?>
+	</div>
+	<div class="product-info-main-wrapper">
+		<?php
+
+        $contentMain = $block->getChildHtml('product.quickview.info.main');
+
+        if($callHelper->getConfig('mgscallforprice/general/isenabled')){
+            $pattern = '/<div class="product-info-price">.*?<\/div>/s';
+
+            ob_start();
+            if ($callHelper->getConfig('mgscallforprice/general/choosetype') == '1') : ?>
+                <a href="tel: <?php echo $callHelper->getConfig('mgscallforprice/general/vendorphonenumber') ?>"
+                   class="action primary tocart callforprice"><span><i
+                            class="pe-7s-call"></i><?php echo $callHelper->getConfig('mgscallforprice/general/callforpricetextbutton') ?></span></a>
+        <?php elseif ($callHelper->getConfig('mgscallforprice/general/choosetype') == '2'): ?>
+        <button type="button" class="action primary tocart request-quote-<?php echo
+        $block->getProduct()->getId(); ?>">
+            <span><?php echo $callHelper->getConfig('mgscallforprice/general/requestquote') ?></span></button>
+        <form class="form quote-request test" action="<?php echo $test; ?>"
+              id="quote-request-form-<?php echo $block->getProduct()->getId() ?>" method="post"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}' style="display: none;">
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend>
+                <br/>
+                <div class="field note no-label">
+                    <?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?>
+                </div>
+                <div class="field name required">
+                    <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name-<?php echo $block->getProduct()->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="" class="input-text"
+                               type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field telephone">
+                    <label class="label"
+                           for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+                    <div class="control">
+                        <input name="telephone" id="telephone-<?php echo $_product->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value=""
+                               class="input-text" type="text"/>
+                    </div>
+                </div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email-<?php echo $_product->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value=""
+                               class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+
+                <div class="field productId">
+                    <label class="label productId"
+                           for="productId"><span><?= $block->escapeHtml(__('Product ID')) ?></span></label>
+                    <div class="control">
+                        <input name="productId" id="productId-<?php echo $_product->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Product ID')) ?>"
+                               value="<?php echo $_product->getId(); ?>" class="input-text" type="hidden"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="field productSku">
+                    <label class="label productSku"
+                           for="productSku"><span><?= $block->escapeHtml(__('Product SKU')) ?></span></label>
+                    <div class="control">
+                        <input name="productSku" id="productSku-<?php echo $_product->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Product SKU')) ?>"
+                               value="<?php echo $_product->getSku(); ?>" class="input-text" type="hidden"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="field productName">
+                    <label class="label productName"
+                           for="productName"><span><?= $block->escapeHtml(__('Product Name')) ?></span></label>
+                    <div class="control">
+                        <input name="productName" id="productName-<?php echo $_product->getId(); ?>"
+                               title="<?= $block->escapeHtmlAttr(__('Product Name')) ?>"
+                               value="<?php echo $_product->getName(); ?>" class="input-text" type="hidden"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="field comment">
+                    <label class="label" for="comment">
+                        <span><?= $block->escapeHtml(__('Comment')) ?></span>
+                    </label>
+                    <div class="control">
+															<textarea name="comment"
+                                                                      id="comment-<?php echo $_product->getId(); ?>"
+                                                                      title="<?= $block->escapeHtmlAttr(__('Comment')) ?>"
+                                                                      class="input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </div>
+                <?= $block->getChildHtml('form.additional.info') ?>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="hideit" id="hideit" value=""/>
+                    <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                            class="action submit primary">
+                        <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <?php else: ?>
+        <?php if (!$customerSession->isLoggedIn()):?>
+        <a href="<?= $UrlInterface->getUrl('customer/account/login') ?>"
+           alt="Login to see price" class="logintoseeprice">
+            <span><?= __('Login to see price') ?></span>
+        </a>
+        <?php else: ?>
+        <?= /* @noEscape */$priceHtml ?>
+        <?php endif;?>
+        <?php endif;
+        $contentPrice = ob_get_contents();
+        ob_end_clean();
+
+            $replacement = '<div class="product-info-price">'
+                    . $contentPrice.'
+                </div>';
+
+            $result = preg_replace($pattern, $replacement, $contentMain);
+
+            echo '<div class="product-info-main">'.$result.'</div>';
+        }else{
+            echo $contentMain;
+        }
+
+
+        ?>
+	</div>
+</div>

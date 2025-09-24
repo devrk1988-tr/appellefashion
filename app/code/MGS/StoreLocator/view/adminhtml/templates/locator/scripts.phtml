@@ -1,0 +1,134 @@
+<?php $themeHelper = $this->helper('MGS\StoreLocator\Helper\Data'); ?>
+<?php if($themeHelper->getStoreConfig('locator/general/store_api_key')){
+    $apikey = $themeHelper->getStoreConfig('locator/general/store_api_key');
+}else{
+    $apikey = 'AIzaSyD11c9ZFjYyFvKmbp2eKkpRuiqkjkAUIG0';
+}
+?>
+<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $apikey
+?>&v=3.53">
+</script>
+<style type="text/css">
+    #locator_form_map{height:500px; border:1px solid #ddd;<?php if (!$this->getRequest()->getParam('id')): ?>display:none<?php endif ?>}
+</style>
+
+<script type="text/javascript">
+
+    require([
+        "jquery",
+        "jquery/ui"
+    ], function ($) {
+        $('#getmap_address').click(function () {
+            getMapbyAddress();
+        });
+        $('#getmap_location').click(function () {
+            getMapByLocation();
+        });
+
+        function getMapbyAddress() {
+            var streetValue = $('#locator_street_address').val();
+            var countryValue = $('#locator_country').val();
+            var stateValue = $('#locator_state').val();
+            var cityValue = $('#locator_city').val();
+            var zipcodeValue = $('#locator_zipcode').val();
+            $('#locator_form_map').show();
+            $('#locator_form_map').html('<div data-role="spinner"  class="admin__data-grid-loading-mask" style="display: block;">'
+                + '<div class="spinner">'
+                + '<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>'
+                + '</div></div>');
+            var address = streetValue + " " + cityValue + " " + stateValue + " " + zipcodeValue + " " + countryValue;
+            let apikey = '<?php echo $apikey ?>';
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "https://maps.googleapis.com/maps/api/geocode/json",
+                data: {'address': address, 'key': apikey, 'sensor': false},
+                success: function (data) {
+                    if (data.results.length) {
+                        var latitude = data.results[0].geometry.location.lat;
+                        var longitude = data.results[0].geometry.location.lng;
+
+                        $('#locator_lat').val(latitude);
+                        $('#locator_lng').val(longitude);
+
+                        displayMapAt(latitude, longitude, 15);
+                    }
+                }
+            });
+        }
+
+        function getMapByLocation() {
+            $('#locator_form_map').show();
+            $('#locator_form_map').html('<div data-role="spinner"  class="admin__data-grid-loading-mask" style="display: block;">'
+                + '<div class="spinner">'
+                + '<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>'
+                + '</div></div>');
+            latitude = $('#locator_lat').val();
+            longitude = $('#locator_lng').val();
+            getMap(latitude, longitude);
+        }
+
+        function getMap(latitude, longitude) {
+
+            // var nameValue = $('#locator_name').val();
+            // if (nameValue != '') {
+            //     nameValue = '<h2>' + nameValue + '</h2>';
+            // }
+            // const position = {lat: latitude, lng: longitude};
+            //
+            // var map = new google.maps.Map(document.getElementById('locator_form_map'), {
+            //     zoom: 15,
+            //     scrollwheel: false,
+            //     navigationControl: true,
+            //     mapTypeControl: false,
+            //     scaleControl: false,
+            //     draggable: true,
+            //     center: position,
+            //     mapTypeId: google.maps.MapTypeId.ROADMAP
+            // });
+            //
+            // marker = new google.maps.marker.AdvancedMarkerElement({
+            //     position: position,
+            //     map: map,
+            //     title: nameValue,
+            // });
+
+
+
+            displayMapAt(latitude, longitude, 15);
+
+        }
+
+        function displayMapAt(lat, lon) {
+            let nameValue = $('#locator_name').val();
+            let street_address = $('#locator_street_address').val();
+            let State = $('#locator_state').val();
+            let locator_city = $('#locator_city').val();
+            let locator_country = $('#locator_country').val();
+            let apikey = '<?php echo $apikey?>';
+            let q = nameValue+'+'+street_address+'+'+State+', '+locator_city+'+'+locator_country;
+            $("#locator_form_map")
+                .html(`
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=${apikey}&q=${q}&center=${lat},${lon}&zoom=16"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+
+        </iframe>
+                        `);
+
+        }
+
+        setTimeout(()=>{
+            latitude = $('#locator_lat').val();
+            longitude = $('#locator_lng').val();
+            getMap(latitude, longitude);
+        },2000)
+    });
+
+</script>
+
+
