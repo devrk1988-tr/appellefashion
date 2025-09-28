@@ -80,7 +80,7 @@ generated/*
  
  
 pub/phpmyadmin/*
- 
+vendor_old/
 pub/blog/
 .php-cs-fixer.dist.php
 LICENSE_AFL.txt
